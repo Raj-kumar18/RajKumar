@@ -658,22 +658,82 @@
 
   <!-- Top-Notch Footer -->
   <footer class="top-notch-footer">
-    <div class="footer-row">
-      <div class="footer-col">
-        <span class="footer-label">DESIGN &amp; CODE</span>
-        <span class="footer-val">© 2026 Raj Kumar</span>
+    <div class="footer-top-line"></div>
+    <div class="footer-scanlines"></div>
+    <div class="footer-grid">
+      <!-- Branding & Description Column -->
+      <div class="footer-col footer-brand">
+        <a class="footer-logo" href="#home">RAJ KUMAR<span class="logo-dot">°</span></a>
+        <p class="footer-desc">
+          Interactive 3D Computer portfolio designed around the Commodore PET 8296 aesthetic. Merging digital history
+          with modern frontend engineering.
+        </p>
+        <div class="footer-status">
+          <span class="status-indicator"></span> SYSTEM: ONLINE / ACTIVE
+        </div>
+        <div class="footer-terminal">
+          <div class="terminal-header">
+            <span class="terminal-title">SYS_MONITOR.EXE</span>
+            <div class="terminal-dots"><span></span><span></span><span></span></div>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-line"><span class="lbl">TIME:</span> <span id="sys-time">--:--:-- IST</span></div>
+            <div class="terminal-line"><span class="lbl">UPTIME:</span> <span id="sys-uptime">0s</span></div>
+            <div class="terminal-line"><span class="lbl">RAM:</span> <span id="sys-ram">Checking...</span></div>
+            <div class="terminal-line"><span class="lbl">CPU LOAD:</span> <span id="sys-cpu">0%</span></div>
+          </div>
+        </div>
       </div>
-      <div class="footer-col">
-        <span class="footer-label">ENGINE</span>
-        <span class="footer-val">TypeScript &bull; WebGL &bull; GSAP</span>
+
+      <!-- Quick Links Column -->
+      <div class="footer-col footer-links-col">
+        <span class="footer-label">NAVIGATION</span>
+        <ul class="footer-links">
+          <li><a href="#home" class="footer-link"><i class="ri-arrow-right-s-line"></i> Home</a></li>
+          <li><a href="#aboutMe" class="footer-link"><i class="ri-arrow-right-s-line"></i> About</a></li>
+          <li><a href="#projects" class="footer-link"><i class="ri-arrow-right-s-line"></i> Projects</a></li>
+          <li><a href="#skills-section" class="footer-link"><i class="ri-arrow-right-s-line"></i> Skills</a></li>
+          <li><a href="#contact" class="footer-link"><i class="ri-arrow-right-s-line"></i> Contact</a></li>
+        </ul>
       </div>
-      <div class="footer-col">
-        <span class="footer-label">LOCATION</span>
-        <span class="footer-val">Patna, Bihar, IND</span>
+
+      <!-- Social Links Column -->
+      <div class="footer-col footer-socials-col">
+        <span class="footer-label">CONNECT</span>
+        <ul class="footer-links">
+          <li><a href="http://github.com/raj-kumar18/" target="_blank" class="footer-link"><i
+                class="ri-github-fill"></i> GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/rajkumar/" target="_blank" class="footer-link"><i
+                class="ri-linkedin-box-fill"></i> LinkedIn</a></li>
+          <li><a href="mailto:raj.kumar.work18@gmail.com" class="footer-link"><i class="ri-mail-line"></i> Email Me</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- System Details Column -->
+      <div class="footer-col footer-sys-col">
+        <div class="sys-item">
+          <span class="footer-label">DESIGN &amp; CODE</span>
+          <span class="footer-val">© 2026 Raj Kumar</span>
+        </div>
+        <div class="sys-item">
+          <span class="footer-label">ENGINE</span>
+          <span class="footer-val">TypeScript &bull; WebGL &bull; GSAP &bull; Lenis</span>
+        </div>
+        <div class="sys-item">
+          <span class="footer-label">LOCATION &amp; TZ</span>
+          <span class="footer-val">Patna, Bihar, IND (IST)</span>
+        </div>
       </div>
     </div>
+
     <div class="footer-bottom">
-      Interactive 3D Computer based on Commodore PET 8296 design. Built for digital exploration.
+      <div class="footer-bottom-text">
+        Built for digital exploration. All rights reserved.
+      </div>
+      <a href="#home" class="back-to-top" aria-label="Back to Top">
+        <span>[ RETURN TO TOP ]</span> <i class="ri-arrow-up-line"></i>
+      </a>
     </div>
   </footer>
 
@@ -804,32 +864,67 @@
       function initScrollAnimations() {
         gsap.registerPlugin(ScrollTrigger);
 
-        document.querySelectorAll(".elem").forEach((elem) => {
-          const card = elem.querySelector(".skill-card");
-          const xTransform = gsap.utils.random(-120, 120);
+        let skillsCardST = []; // keep refs so we can kill them on breakpoint change
 
-          gsap.set(card, {
-            transformOrigin: `${xTransform < 0 ? 0 : "100%"} 50%`,
-          });
+        function initSkillsDrift() {
+          // Kill any previous instances before rebuilding
+          skillsCardST.forEach(st => st.kill());
+          skillsCardST = [];
+          gsap.set(".elem", { clearProps: "xPercent" });
+          gsap.set(".skill-card", { clearProps: "scale,opacity,transformOrigin" });
 
-          gsap.timeline({
-            scrollTrigger: {
-              trigger: card,
-              start: "top 95%",   // starts when card enters the viewport
-              end: "top 65%",     // fully loaded when card reaches 65% viewport height
-              scrub: true
-            }
-          })
-            .from(card, {
-              scale: 0.4,
-              opacity: 0,
-              ease: "none"
-            }, "start")
-            .from(elem, {
+          const isMobile = window.innerWidth < 768;
+          const isTablet = window.innerWidth < 1024;
+          const minDrift = isMobile ? 8 : (isTablet ? 15 : 40);
+          const maxDrift = isMobile ? 22 : (isTablet ? 35 : 85);
+
+          document.querySelectorAll(".elem").forEach((elem) => {
+            const card = elem.querySelector(".skill-card");
+            if (!card) return;
+
+            const offset = gsap.utils.random(minDrift, maxDrift);
+            const direction = Math.random() < 0.5 ? -1 : 1;
+            const xTransform = offset * direction;
+
+            gsap.set(card, {
+              transformOrigin: xTransform < 0 ? "left center" : "right center"
+            });
+
+            const fadeST = gsap.to(card, {
+              scale: 0.8,
+              opacity: 0.7,
+              ease: "none",
+              scrollTrigger: {
+                trigger: elem,
+                start: "top 10%",
+                end: "bottom top",
+                scrub: true
+              }
+            }).scrollTrigger;
+
+            const slideST = gsap.to(elem, {
               xPercent: xTransform,
-              ease: "none"
-            }, "start");
-        });
+              ease: "none",
+              scrollTrigger: {
+                trigger: elem,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+              }
+            }).scrollTrigger;
+
+            skillsCardST.push(fadeST, slideST);
+          });
+        }
+
+        // Run once on load
+        initSkillsDrift();
+
+        // Rebuild only when crossing a breakpoint, not on every pixel of resize
+        let mm = gsap.matchMedia();
+        mm.add("(min-width: 1024px)", () => initSkillsDrift());
+        mm.add("(min-width: 768px) and (max-width: 1023px)", () => initSkillsDrift());
+        mm.add("(max-width: 767px)", () => initSkillsDrift());
 
         // GSAP ScrollTrigger for Projects Stacking animation with custom exit transitions
         if (!reduceMotion) {

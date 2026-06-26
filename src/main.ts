@@ -80,11 +80,29 @@ const lenis = new Lenis({
   touchMultiplier: 2,
 });
 
-function raf(time: number) {
-  lenis.raf(time);
+// Expose Lenis globally so other scripts can access it
+(window as any).lenis = lenis;
+
+// Connect Lenis to ScrollTrigger if GSAP & ScrollTrigger are loaded
+if ((window as any).gsap && (window as any).ScrollTrigger) {
+  const gsap = (window as any).gsap;
+  const ScrollTrigger = (window as any).ScrollTrigger;
+
+  lenis.on('scroll', ScrollTrigger.update);
+
+  gsap.ticker.add((time: number) => {
+    lenis.raf(time * 1000);
+  });
+
+  gsap.ticker.lagSmoothing(0);
+} else {
+  // Fallback to standard RAF if GSAP isn't loaded yet
+  function raf(time: number) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
   requestAnimationFrame(raf);
 }
-requestAnimationFrame(raf);
 
 // Intercept clicks on anchor tags for smooth scrolling
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -107,3 +125,51 @@ function onScroll() {
 }
 onScroll();
 window.addEventListener("scroll", onScroll, { passive: true });
+
+// Live retro system monitor updates
+const startTime = Date.now();
+
+function updateSystemMonitor() {
+  const sysTimeEl = document.getElementById("sys-time");
+  const sysUptimeEl = document.getElementById("sys-uptime");
+  const sysRamEl = document.getElementById("sys-ram");
+  const sysCpuEl = document.getElementById("sys-cpu");
+
+  // 1. Time (IST Patna time)
+  if (sysTimeEl) {
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString("en-US", {
+      hour12: false,
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
+    sysTimeEl.textContent = `${timeStr} IST`;
+  }
+
+  // 2. Uptime
+  if (sysUptimeEl) {
+    const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+    sysUptimeEl.textContent = `${elapsedSeconds}s`;
+  }
+
+  // 3. RAM (simulated fluctuation)
+  if (sysRamEl) {
+    const baseFree = 28416; // out of 32768
+    const fluctuation = Math.floor(Math.sin(Date.now() / 3000) * 128) + Math.floor(Math.random() * 32);
+    const freeRam = baseFree + fluctuation;
+    sysRamEl.textContent = `${freeRam} / 32768 BYTES`;
+  }
+
+  // 4. CPU LOAD
+  if (sysCpuEl) {
+    const baseCpu = 2.4;
+    const noise = Math.sin(Date.now() / 1500) * 1.5 + Math.random() * 0.8;
+    const cpuLoad = Math.max(0.2, (baseCpu + noise)).toFixed(1);
+    sysCpuEl.textContent = `${cpuLoad}%`;
+  }
+}
+
+// Update monitor immediately and then every second
+updateSystemMonitor();
+window.setInterval(updateSystemMonitor, 1000);
