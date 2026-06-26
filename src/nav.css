@@ -1,0 +1,189 @@
+:root {
+  --ink: #0B0C0F;
+  --cloud: #F4EFE6;
+  --muted: #8E92A0;
+  --layer-1: #1C2333;
+  --layer-2: #5B2140;
+  --layer-3: #241A10;
+  --brass: #C9A23E;
+  --hairline: rgba(244, 239, 230, 0.14);
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 7vw;
+  z-index: 300;
+  mix-blend-mode: difference;
+}
+.logo {
+  font-family: 'Fraunces', serif;
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--cloud);
+  text-decoration: none;
+}
+.logo span { color: var(--brass); }
+
+.menu-btn {
+  background: none;
+  border: none;
+  color: var(--cloud);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 0;
+  font-family: 'Space Mono', monospace;
+}
+.menu-btn__label {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.menu-btn__label .word { display: inline-block; }
+.menu-btn__lines {
+  width: 26px;
+  height: 16px;
+  position: relative;
+}
+.menu-btn__lines span {
+  position: absolute;
+  left: 0; right: 0;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform .45s cubic-bezier(.65,0,.35,1), top .45s cubic-bezier(.65,0,.35,1), opacity .3s ease;
+}
+.menu-btn__lines span:nth-child(1) { top: 2px; }
+.menu-btn__lines span:nth-child(2) { top: 13px; }
+.menu-btn.is-open .menu-btn__lines span:nth-child(1) { top: 7px; transform: rotate(45deg); }
+.menu-btn.is-open .menu-btn__lines span:nth-child(2) { top: 7px; transform: rotate(-45deg); }
+
+/* ---------- Overlay ---------- */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  clip-path: inset(0% 0% 100% 0%);
+  display: none;
+}
+.nav-overlay.is-visible { display: block; }
+
+.nav-layer {
+  position: absolute;
+  inset: 0;
+  transform-origin: top;
+  transform: scaleY(0);
+}
+.nav-layer--1 { background: var(--layer-1); }
+.nav-layer--2 { background: var(--layer-2); }
+.nav-layer--3 { background: var(--layer-3); }
+
+.nav-content {
+  position: relative;
+  z-index: 5;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 7vw;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4px, 1.4vw, 10px);
+  margin-bottom: clamp(40px, 6vw, 72px);
+}
+.nav-link-row {
+  display: flex;
+  align-items: baseline;
+  gap: 22px;
+  border-top: 1px solid var(--hairline);
+  padding-top: clamp(6px, 1.2vw, 12px);
+}
+.nav-link-row:first-child { border-top: none; }
+.nav-index {
+  font-size: 12px;
+  color: var(--brass);
+  letter-spacing: 0.08em;
+  width: 26px;
+}
+.nav-link {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(2.6rem, 8vw, 5.6rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  display: inline-block;
+  position: relative;
+  transition: color .35s ease;
+  color: var(--cloud);
+  text-decoration: none;
+}
+.nav-link:hover { color: var(--brass); font-style: italic; }
+
+.nav-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(28px, 5vw, 64px);
+  border-top: 1px solid var(--hairline);
+  padding-top: 24px;
+}
+.nav-footer__col { display: flex; flex-direction: column; gap: 8px; text-align: left; }
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.nav-footer__col a { font-size: 14px; color: var(--cloud); text-decoration: none;}
+.nav-footer__col a:hover { color: var(--brass); }
+.social-row { display: flex; gap: 16px; font-size: 14px; }
+.social-row a:hover { color: var(--brass); }
+
+/* ---------- Rotating badge ---------- */
+.badge {
+  position: absolute;
+  top: 100px;
+  right: 7vw;
+  width: 110px;
+  height: 110px;
+  opacity: 0;
+}
+.badge svg { width: 100%; height: 100%; animation: spin 14s linear infinite; }
+.badge text {
+  font-family: 'Space Mono', monospace;
+  font-size: 8.6px;
+  letter-spacing: 0.05em;
+  fill: var(--muted);
+}
+.badge circle.dot { fill: var(--brass); }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 720px) {
+  .badge { display: none; }
+  .nav-footer { flex-direction: column; gap: 18px; }
+  .topbar { padding: 18px 5vw; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge svg { animation: none; }
+}
+
+@media (min-width: 1200px) {
+  .topbar {
+    padding: 28px calc((100% - 1200px) / 2);
+  }
+  .nav-content {
+    padding: 0 calc((100% - 1200px) / 2);
+  }
+  .badge {
+    right: calc((100% - 1200px) / 2);
+  }
+}

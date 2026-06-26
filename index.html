@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Raj Kumar – Full Stack Software Engineer &amp; Web Developer</title>
+  <meta name="description"
+    content="My name is Raj Kumar, I’m a full stack software engineer, web developer, and digital designer based in Patna, Bihar. I specialize in building immersive web applications with fluid motion." />
+
+  <link rel="icon" type="image/png" href="/icon/32x32.png" />
+
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/icon/180x180.png" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Raj Kumar – Personal Website" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#C9A23E" />
+
+  <meta property="og:title" content="Raj Kumar – Personal Portfolio" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://github.com/raj-kumar18/" />
+  <meta property="og:image" content="https://edh.dev/icon/og-img1.png" />
+  <meta name="og:description"
+    content="My name is Raj Kumar, I’m a full stack software engineer, web developer, and digital designer based in Patna, Bihar. I specialize in building immersive web applications with fluid motion." />
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;1,9..144,500&family=Space+Mono:wght@400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+
+  <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+  <!-- Prevent FOUC (Flash of Unstyled Content) -->
+  <style>
+    html:not(.loaded) main,
+    html:not(.loaded) header,
+    html:not(.loaded) .nav-overlay,
+    html:not(.loaded) #hero-backup {
+      display: none !important;
+    }
+
+    html:not(.loaded) body {
+      overflow: hidden !important;
+      background-color: #0b0c0f !important;
+    }
+
+    #loading {
+      position: fixed;
+      inset: 0;
+      background-color: #0b0c0f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999999;
+      overflow: hidden;
+    }
+
+    #loader-languages-text {
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(1.8rem, 5vw, 4rem);
+      font-weight: 800;
+      color: #C9A23E;
+      text-align: center;
+      transition: opacity 0.15s ease-in-out;
+    }
+  </style>
+
+  <script type="module" src="/src/main.ts"></script>
+</head>
+
+<body>
+  <div id="home"></div>
+
+  <canvas class="webgl"></canvas>
+
+  <div id="hero-backup">
+    <h3>Hi there, I’m</h3>
+    <h1>Raj Kumar</h1>
+    <ul>
+      <li>Software Engineer</li>
+      <li>MERN • GenAI • Backend</li>
+    </ul>
+  </div>
+
+  <!-- Award-Winning Topbar and Overlay Menu -->
+  <header class="topbar">
+    <a class="logo" href="#home">RAJ KUMAR<span>°</span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navOverlay">
+      <span class="menu-btn__label"><span class="word" data-open="Menu" data-close="Close">Menu</span></span>
+      <span class="menu-btn__lines"><span></span><span></span></span>
+    </button>
+  </header>
+
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true">
+    <div class="nav-layer nav-layer--1"></div>
+    <div class="nav-layer nav-layer--2"></div>
+    <div class="nav-layer nav-layer--3"></div>
+
+    <div class="badge">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="circlePath" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0" />
+        </defs>
+        <text>
+          <textPath href="#circlePath">RAJ KUMAR • EST. 2026 • RAJ KUMAR • EST. 2026 •</textPath>
+        </text>
+        <circle class="dot" cx="50" cy="12" r="2.4" />
+      </svg>
+    </div>
+
+    <div class="nav-content">
+      <nav class="nav-links">
+        <div class="nav-link-row"><span class="nav-index">01</span><a class="nav-link" href="#home">Home</a></div>
+        <div class="nav-link-row"><span class="nav-index">02</span><a class="nav-link" href="#aboutMe">About</a></div>
+        <div class="nav-link-row"><span class="nav-index">03</span><a class="nav-link" href="#projects">Projects</a>
+        </div>
+        <div class="nav-link-row"><span class="nav-index">04</span><a class="nav-link" href="#contact">Contact</a></div>
+      </nav>
+
+      <div class="nav-footer">
+        <div class="nav-footer__col">
+          <span class="eyebrow">Say hello</span>
+          <a href="mailto:hello@rajkumar.dev">hello@rajkumar.dev</a>
+        </div>
+        <div class="nav-footer__col">
+          <span class="eyebrow">Elsewhere</span>
+          <div class="social-row">
+            <a href="http://github.com/raj-kumar18/" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/rajkumar/" target="_blank">LinkedIn</a>
+          </div>
+        </div>
+        <div class="nav-footer__col">
+          <span class="eyebrow">Based in</span>
+          <span>Patna, Bihar, India — works worldwide</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section>
+      <h1 id="aboutMe">About Me</h1>
+      <div class="about-award">
+        <p>
+          I am <em>Raj Kumar</em>, a Software Engineering undergraduate and full stack developer based in Bihar, India.
+          I specialize in building scalable web applications using MERN, TypeScript, Django, and modern backend
+          technologies.
+        </p>
+
+        <p>
+          My focus lies at the intersection of backend engineering, intelligent systems, and immersive web experiences.
+          I enjoy designing clean user interfaces, developing high-performance architectures, and exploring Generative
+          AI to create impactful digital products.
+        </p>
+
+        <p>
+          This portfolio showcases selected projects from my journey—ranging from full stack applications and backend
+          systems
+          to experimental interfaces and ideas built with curiosity and craftsmanship.
+        </p>
+      </div>
+    </section>
+
+    <!-- Heading Section for Projects -->
+    <section style="padding-bottom: 20px; margin-bottom: 20px;">
+      <h1 id="projects">Projects</h1>
+      <hr />
+    </section>
+
+    <!-- Projects Section with Stacking Panels -->
+    <section class="stage">
+      <div class="stack" id="stack">
+        <!-- Project 1 -->
+        <div class="panel" id="project-card-1">
+          <div class="tag">PROJECT 01 — 2026</div>
+          <h2>KT-Fashion</h2>
+          <div class="thumb" data-text="KT_FASHION.EXE // ONLINE // SECURE_PORT_443">
+            <div class="crt-glow"></div>
+            <div class="crt-scanlines"></div>
+            <div class="crt-content">
+              <div class="crt-status-row">
+                <span class="crt-dot"></span>
+                <span class="crt-system-label">SYS_STATUS: ONLINE</span>
+              </div>
+              <div class="crt-terminal-text">KT_FASHION.EXE // ONLINE // SECURE_PORT_443</div>
+            </div>
+          </div>
+          <p>Premium E-Commerce platform for modern fashion trends. Implements fluid user experience, instant checkout
+            with Stripe integration, and optimized admin dashboard management.</p>
+          <div class="project-tech">
+            <span>NextJS</span>
+            <span>TailwindCSS</span>
+            <span>Stripe</span>
+            <span>NodeJS</span>
+          </div>
+          <div class="project-links">
+            <a href="https://ktfashion.in" target="_blank"><i class="ri-external-link-line"></i> Live Site</a>
+            <a href="https://github.com/Raj-kumar18/KT-Fashion" target="_blank"><i class="ri-code-s-slash-line"></i>
+              Source Code</a>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="panel" id="project-card-2">
+          <div class="tag">PROJECT 02 — 2025</div>
+          <h2>Pigeons Automation</h2>
+          <div class="thumb" data-text="PIGEONS_BOT.SYS // ACTIONS_ACTIVE // PROCESS_OK">
+            <div class="crt-glow"></div>
+            <div class="crt-scanlines"></div>
+            <div class="crt-content">
+              <div class="crt-status-row">
+                <span class="crt-dot"></span>
+                <span class="crt-system-label">SYS_STATUS: ONLINE</span>
+              </div>
+              <div class="crt-terminal-text">PIGEONS_BOT.SYS // ACTIONS_ACTIVE // PROCESS_OK</div>
+            </div>
+          </div>
+          <p>Advanced robotic process automation system. Streamlines data synchronization pipelines, automates recurring
+            back-office workflows, and logs execution analytics.</p>
+          <div class="project-tech">
+            <span>Python</span>
+            <span>Selenium</span>
+            <span>Automation</span>
+            <span>Flask</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Raj-kumar18/Pigeons.Automation" target="_blank"><i
+                class="ri-code-s-slash-line"></i> Source Code</a>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="panel" id="project-card-3">
+          <div class="tag">PROJECT 03 — 2025</div>
+          <h2>Dog Studio Clone</h2>
+          <div class="thumb" data-text="DOGSTUDIO_GL // SHADERS_READY // ENGINE_LOAD_100">
+            <div class="crt-glow"></div>
+            <div class="crt-scanlines"></div>
+            <div class="crt-content">
+              <div class="crt-status-row">
+                <span class="crt-dot"></span>
+                <span class="crt-system-label">SYS_STATUS: ONLINE</span>
+              </div>
+              <div class="crt-terminal-text">DOGSTUDIO_GL // SHADERS_READY // ENGINE_LOAD_100</div>
+            </div>
+          </div>
+          <p>A high-fidelity immersive web experience replicating the award-winning interactive designs of Dogstudio.
+            Highlights advanced shaders, 3D graphics, and spatial audio.</p>
+          <div class="project-tech">
+            <span>HTML5</span>
+            <span>Three.js</span>
+            <span>GSAP</span>
+            <span>Web Audio</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Raj-kumar18/Dog-Studio-Clone" target="_blank"><i
+                class="ri-code-s-slash-line"></i> Source Code</a>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="panel" id="project-card-4">
+          <div class="tag">PROJECT 04 — 2024</div>
+          <h2>Kkaagadamh</h2>
+          <div class="thumb" data-text="KKAAGADAMH.BIN // STACK_INITIALIZED // DB_OK">
+            <div class="crt-glow"></div>
+            <div class="crt-scanlines"></div>
+            <div class="crt-content">
+              <div class="crt-status-row">
+                <span class="crt-dot"></span>
+                <span class="crt-system-label">SYS_STATUS: ONLINE</span>
+              </div>
+              <div class="crt-terminal-text">KKAAGADAMH.BIN // STACK_INITIALIZED // DB_OK</div>
+            </div>
+          </div>
+          <p>A custom platform designed for digital publishing and text formatting workflows, offering highly
+            customizable layouts, printing presets, and real-time canvas editors.</p>
+          <div class="project-tech">
+            <span>React</span>
+            <span>NodeJS</span>
+            <span>MongoDB</span>
+            <span>Express</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Raj-kumar18/Kkaagadamh" target="_blank"><i class="ri-code-s-slash-line"></i>
+              Source Code</a>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="panel" id="project-card-5">
+          <div class="tag">PROJECT 05 — 2024</div>
+          <h2>USA Investment Finance</h2>
+          <div class="thumb" data-text="INVEST_FIN_USA // NASDAQ_FEED_OK // SYNC_SUCCESS">
+            <div class="crt-glow"></div>
+            <div class="crt-scanlines"></div>
+            <div class="crt-content">
+              <div class="crt-status-row">
+                <span class="crt-dot"></span>
+                <span class="crt-system-label">SYS_STATUS: ONLINE</span>
+              </div>
+              <div class="crt-terminal-text">INVEST_FIN_USA // NASDAQ_FEED_OK // SYNC_SUCCESS</div>
+            </div>
+          </div>
+          <p>A sophisticated financial analyzer dashboard designed for United States market trends. Integrates real-time
+            equity metrics, portfolio simulation widgets, and historical graphs.</p>
+          <div class="project-tech">
+            <span>React</span>
+            <span>Tailwind</span>
+            <span>ChartJS</span>
+            <span>REST API</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Raj-kumar18/Investment-Finance-USA" target="_blank"><i
+                class="ri-code-s-slash-line"></i> Source Code</a>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="panel" id="project-card-6">
+          <div class="tag">PROJECT 06 — 2024</div>
+          <h2>Socygen Landing Page</h2>
+          <div class="thumb" data-text="SOCYGEN_LP // CLIENT_RENDER_READY // STABLE">
+            <div class="crt-glow"></div>
+            <div class="crt-scanlines"></div>
+            <div class="crt-content">
+              <div class="crt-status-row">
+                <span class="crt-dot"></span>
+                <span class="crt-system-label">SYS_STATUS: ONLINE</span>
+              </div>
+              <div class="crt-terminal-text">SOCYGEN_LP // CLIENT_RENDER_READY // STABLE</div>
+            </div>
+          </div>
+          <p>A modern, high-conversion landing page designed with premium typography, glassmorphism containers, smooth
+            animations, and interactive layout grids.</p>
+          <div class="project-tech">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JS</span>
+            <span>LocomotiveScroll</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Raj-kumar18/Socygen-Lading-Page-" target="_blank"><i
+                class="ri-code-s-slash-line"></i> Source Code</a>
+          </div>
+        </div>
+
+        <!-- Project 7 -->
+        <div class="panel" id="project-card-7">
+          <div class="tag">PROJECT 07 — 2024</div>
+          <h2>Youtube Backend</h2>
+          <div class="thumb" data-text="YOUTUBE_BACKEND.SYS // JWT_AUTH_OK // DB_CONNECTED">
+            <div class="crt-glow"></div>
+            <div class="crt-scanlines"></div>
+            <div class="crt-content">
+              <div class="crt-status-row">
+                <span class="crt-dot"></span>
+                <span class="crt-system-label">SYS_STATUS: ONLINE</span>
+              </div>
+              <div class="crt-terminal-text">YOUTUBE_BACKEND.SYS // JWT_AUTH_OK // DB_CONNECTED</div>
+            </div>
+          </div>
+          <p>A secure production-grade backend API recreating YouTube services. Implements video uploads processing, JWT
+            session authentication, subscription architectures, and database optimizations.</p>
+          <div class="project-tech">
+            <span>NodeJS</span>
+            <span>Express</span>
+            <span>MongoDB</span>
+            <span>Multer</span>
+            <span>JWT</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Raj-kumar18/YoutubeBackend" target="_blank"><i class="ri-code-s-slash-line"></i>
+              Source Code</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section with Responsive Matrix & Interactive Scaling -->
+    <section id="skills-section">
+      <h1 id="skills">My Skills</h1>
+      <hr />
+      <div class="skills-grid-wrapper">
+        <div class="skills-grid">
+          <div class="elem" style="--r: 1; --c: 2;">
+            <div class="skill-card" data-skill="html5">
+              <div class="skill-glow"></div>
+              <img
+                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg"
+                alt="HTML5" width="80" height="80" loading="lazy" />
+              <span>HTML5</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 1; --c: 6;">
+            <div class="skill-card" data-skill="css3">
+              <div class="skill-glow"></div>
+              <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg"
+                alt="CSS3" width="80" height="80" loading="lazy" />
+              <span>CSS3</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 2; --c: 3;">
+            <div class="skill-card" data-skill="javascript">
+              <div class="skill-glow"></div>
+              <img
+                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
+                alt="JavaScript" width="80" height="80" loading="lazy" />
+              <span>JavaScript</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 2; --c: 7;">
+            <div class="skill-card" data-skill="typescript">
+              <div class="skill-glow"></div>
+              <img
+                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg"
+                alt="TypeScript" width="80" height="80" loading="lazy" />
+              <span>TypeScript</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 3; --c: 1;">
+            <div class="skill-card" data-skill="react">
+              <div class="skill-glow"></div>
+              <img
+                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg"
+                alt="React" width="80" height="80" loading="lazy" />
+              <span>React</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 3; --c: 5;">
+            <div class="skill-card" data-skill="nextjs">
+              <div class="skill-glow"></div>
+              <img src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg" alt="NextJS" width="80" height="80"
+                loading="lazy" />
+              <span>NextJS</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 4; --c: 4;">
+            <div class="skill-card" data-skill="tailwind">
+              <div class="skill-glow"></div>
+              <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="Tailwind" width="80"
+                height="80" loading="lazy" />
+              <span>Tailwind</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 4; --c: 8;">
+            <div class="skill-card" data-skill="bootstrap">
+              <div class="skill-glow"></div>
+              <img
+                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg"
+                alt="Bootstrap" width="80" height="80" loading="lazy" />
+              <span>Bootstrap</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 5; --c: 2;">
+            <div class="skill-card" data-skill="nodejs">
+              <div class="skill-glow"></div>
+              <img
+                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg"
+                alt="NodeJS" width="80" height="80" loading="lazy" />
+              <span>NodeJS</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 5; --c: 6;">
+            <div class="skill-card" data-skill="express">
+              <div class="skill-glow"></div>
+              <img
+                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg"
+                alt="Express" width="80" height="80" loading="lazy" />
+              <span>Express</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 6; --c: 3;">
+            <div class="skill-card" data-skill="python">
+              <div class="skill-glow"></div>
+              <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
+                alt="Python" width="80" height="80" loading="lazy" />
+              <span>Python</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 6; --c: 7;">
+            <div class="skill-card" data-skill="django">
+              <div class="skill-glow"></div>
+              <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="Django" width="80" height="80"
+                loading="lazy" />
+              <span>Django</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 7; --c: 1;">
+            <div class="skill-card" data-skill="flask">
+              <div class="skill-glow"></div>
+              <img src="https://www.vectorlogo.zone/logos/pocoo_flask/pocoo_flask-icon.svg" alt="Flask" width="80"
+                height="80" loading="lazy" />
+              <span>Flask</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 7; --c: 5;">
+            <div class="skill-card" data-skill="pug">
+              <div class="skill-glow"></div>
+              <img src="https://cdn.worldvectorlogo.com/logos/pug.svg" alt="Pug" width="80" height="80"
+                loading="lazy" />
+              <span>Pug</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 8; --c: 4;">
+            <div class="skill-card" data-skill="mongodb">
+              <div class="skill-glow"></div>
+              <img
+                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg"
+                alt="MongoDB" width="80" height="80" loading="lazy" />
+              <span>MongoDB</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 8; --c: 8;">
+            <div class="skill-card" data-skill="mysql">
+              <div class="skill-glow"></div>
+              <img
+                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg"
+                alt="MySQL" width="80" height="80" loading="lazy" />
+              <span>MySQL</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 9; --c: 2;">
+            <div class="skill-card" data-skill="postgresql">
+              <div class="skill-glow"></div>
+              <img
+                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg"
+                alt="PostgreSQL" width="80" height="80" loading="lazy" />
+              <span>PostgreSQL</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 9; --c: 6;">
+            <div class="skill-card" data-skill="redis">
+              <div class="skill-glow"></div>
+              <img
+                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redis/redis-original-wordmark.svg"
+                alt="Redis" width="80" height="80" loading="lazy" />
+              <span>Redis</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 10; --c: 3;">
+            <div class="skill-card" data-skill="supabase">
+              <div class="skill-glow"></div>
+              <img src="https://www.vectorlogo.zone/logos/supabase/supabase-icon.svg" alt="Supabase" width="80"
+                height="80" loading="lazy" />
+              <span>Supabase</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 10; --c: 7;">
+            <div class="skill-card" data-skill="appwrite">
+              <div class="skill-glow"></div>
+              <img src="https://www.vectorlogo.zone/logos/appwriteio/appwriteio-icon.svg" alt="Appwrite" width="80"
+                height="80" loading="lazy" />
+              <span>Appwrite</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 11; --c: 1;">
+            <div class="skill-card" data-skill="docker">
+              <div class="skill-glow"></div>
+              <img
+                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg"
+                alt="Docker" width="80" height="80" loading="lazy" />
+              <span>Docker</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 11; --c: 5;">
+            <div class="skill-card" data-skill="git">
+              <div class="skill-glow"></div>
+              <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="Git" width="80" height="80"
+                loading="lazy" />
+              <span>Git</span>
+            </div>
+          </div>
+
+          <div class="elem" style="--r: 12; --c: 4;">
+            <div class="skill-card" data-skill="socketio">
+              <div class="skill-glow"></div>
+              <img src="https://www.vectorlogo.zone/logos/socketio/socketio-icon.svg" alt="Socket.IO" width="80"
+                height="80" loading="lazy" />
+              <span>Socket.IO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- World-Class Contact Us Page -->
+    <section class="contact-section">
+      <div class="contact-subtitle">● GET IN TOUCH</div>
+      <h1 id="contact">Let's create<br>something <em>extraordinary</em>.</h1>
+      <p class="contact-text">Currently accepting freelance opportunities, collaboration requests, and full-stack
+        software development projects worldwide.</p>
+
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <input type="text" id="userName" name="user_name" placeholder=" " required />
+          <label for="userName">YOUR NAME</label>
+        </div>
+        <div class="form-group">
+          <input type="email" id="userEmail" name="user_email" placeholder=" " required />
+          <label for="userEmail">YOUR EMAIL</label>
+        </div>
+        <div class="form-group">
+          <input type="text" id="subject" name="subject" placeholder=" " required />
+          <label for="subject">SUBJECT</label>
+        </div>
+        <div class="form-group">
+          <textarea id="message" name="message" rows="4" placeholder=" " required></textarea>
+          <label for="message">YOUR MESSAGE</label>
+        </div>
+        <button type="submit" class="btn send-btn" style="border: none;">
+          Send Message <i class="ri-send-plane-line" style="margin-left: 8px;"></i>
+        </button>
+      </form>
+
+      <div class="contact-socials">
+        <a href="http://github.com/raj-kumar18/" target="_blank"><i class="ri-github-fill"></i> GitHub</a>
+        <a href="https://www.linkedin.com/in/rajkumar/" target="_blank"><i class="ri-linkedin-box-fill"></i>
+          LinkedIn</a>
+      </div>
+    </section>
+  </main>
+
+  <input type="text" id="textarea" readonly />
+
+  <!-- Custom Plain Text Loader Screen with % Progress in Bottom Left -->
+  <div id="loading">
+    <div id="loader-languages-text">Raj Kumar</div>
+    <!-- Hidden elements strictly required for loader.ts callback -->
+    <div id="loading-items" style="display: none;">Starting...</div>
+    <div id="loading-bar" style="display: none;">
+      <div id="loading-bar-progress" style="transform: scaleX(0);"></div>
+    </div>
+    <!-- Visible loading timer % in bottom-left -->
+    <div id="loader-percentage">0%</div>
+  </div>
+
+  <!-- Top-Notch Footer -->
+  <footer class="top-notch-footer">
+    <div class="footer-row">
+      <div class="footer-col">
+        <span class="footer-label">DESIGN &amp; CODE</span>
+        <span class="footer-val">© 2026 Raj Kumar</span>
+      </div>
+      <div class="footer-col">
+        <span class="footer-label">ENGINE</span>
+        <span class="footer-val">TypeScript &bull; WebGL &bull; GSAP</span>
+      </div>
+      <div class="footer-col">
+        <span class="footer-label">LOCATION</span>
+        <span class="footer-val">Patna, Bihar, IND</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      Interactive 3D Computer based on Commodore PET 8296 design. Built for digital exploration.
+    </div>
+  </footer>
+
+  <!-- GSAP for Smooth Menu & ScrollTrigger Badges -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    (function () {
+      // Custom text splitter to avoid premium license checks
+      function splitTextIntoSpans(element) {
+        const text = element.textContent;
+        element.textContent = "";
+        const chars = [...text].map(char => {
+          const span = document.createElement("span");
+          span.textContent = char === " " ? "\u00A0" : char;
+          span.style.display = "inline-block";
+          element.appendChild(span);
+          return span;
+        });
+        return {
+          chars,
+          revert: () => {
+            element.textContent = text;
+          }
+        };
+      }
+
+      const menuBtn = document.getElementById('menuBtn');
+      const overlay = document.getElementById('navOverlay');
+      const layers = gsap.utils.toArray('.nav-layer');
+      const linkRows = gsap.utils.toArray('.nav-link-row');
+      const links = gsap.utils.toArray('.nav-link');
+      const footerCols = gsap.utils.toArray('.nav-footer__col');
+      const badge = document.querySelector('.badge');
+      const labelWord = document.querySelector('.menu-btn__label .word');
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const D = (v) => reduceMotion ? 0.01 : v;
+
+      let isOpen = false;
+      let isAnimating = false;
+      let splits = [];
+
+      function buildSplits() {
+        splits.forEach(s => s.revert());
+        splits = links.map(link => splitTextIntoSpans(link));
+      }
+
+      function allChars() {
+        return splits.flatMap(s => s.chars);
+      }
+
+      function openMenu() {
+        if (isOpen || isAnimating) return;
+        isOpen = true; isAnimating = true;
+        overlay.classList.add('is-visible');
+        overlay.setAttribute('aria-hidden', 'false');
+        menuBtn.classList.add('is-open');
+        menuBtn.setAttribute('aria-expanded', 'true');
+        labelWord.textContent = labelWord.dataset.close;
+
+        gsap.set(layers, { transformOrigin: 'top' });
+        gsap.set(allChars(), { yPercent: 120, rotate: 4 });
+        gsap.set(linkRows, { opacity: 1 });
+        gsap.set(footerCols, { y: 18, opacity: 0 });
+        gsap.set(badge, { opacity: 0, scale: 0.85 });
+
+        const tl = gsap.timeline({
+          onComplete: () => { isAnimating = false; links[0]?.focus(); }
+        });
+
+        tl.to(overlay, { clipPath: 'inset(0% 0% 0% 0%)', duration: D(0.9), ease: 'power4.inOut' }, 0)
+          .to(layers, { scaleY: 1, duration: D(0.7), ease: 'power3.inOut', stagger: D(0.09) }, 0.05)
+          .to(allChars(), { yPercent: 0, rotate: 0, duration: D(0.9), ease: 'power4.out', stagger: D(0.014) }, 0.38)
+          .to(footerCols, { y: 0, opacity: 1, duration: D(0.6), ease: 'power2.out', stagger: D(0.08) }, 0.6)
+          .to(badge, { opacity: 1, scale: 1, duration: D(0.6), ease: 'power2.out' }, 0.55);
+      }
+
+      function closeMenu() {
+        if (!isOpen || isAnimating) return;
+        isOpen = false; isAnimating = true;
+        menuBtn.classList.remove('is-open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        labelWord.textContent = labelWord.dataset.open;
+
+        gsap.set(layers, { transformOrigin: 'bottom' });
+
+        const tl = gsap.timeline({
+          onComplete: () => {
+            overlay.classList.remove('is-visible');
+            overlay.setAttribute('aria-hidden', 'true');
+            isAnimating = false;
+            menuBtn.focus();
+          }
+        });
+
+        tl.to(allChars(), { yPercent: 120, duration: D(0.5), ease: 'power3.in', stagger: D(0.008) }, 0)
+          .to(footerCols, { y: 12, opacity: 0, duration: D(0.3), ease: 'power2.in' }, 0)
+          .to(badge, { opacity: 0, duration: D(0.25) }, 0)
+          .to(layers, { scaleY: 0, duration: D(0.6), ease: 'power3.inOut', stagger: D(0.06) }, 0.18)
+          .to(overlay, { clipPath: 'inset(0% 0% 100% 0%)', duration: D(0.7), ease: 'power4.inOut' }, 0.28);
+      }
+
+      function toggleMenu() { isOpen ? closeMenu() : openMenu(); }
+
+      menuBtn.addEventListener('click', toggleMenu);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isOpen) closeMenu();
+        if ((e.key === 'm' || e.key === 'M') && !isAnimating &&
+          !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+          toggleMenu();
+        }
+      });
+
+      // Close menu on overlay link clicks (smooth scrolling is handled in main.ts via Lenis)
+      links.forEach(link => link.addEventListener('click', (e) => {
+        const targetId = link.getAttribute("href");
+        if (!targetId || targetId === "#") return;
+        closeMenu();
+      }));
+
+      document.fonts.ready.then(buildSplits);
+
+      // GSAP ScrollTrigger initialization deferred until content is visible
+      function initScrollAnimations() {
+        gsap.registerPlugin(ScrollTrigger);
+
+        document.querySelectorAll(".elem").forEach((elem) => {
+          const card = elem.querySelector(".skill-card");
+          const xTransform = gsap.utils.random(-120, 120);
+
+          gsap.set(card, {
+            transformOrigin: `${xTransform < 0 ? 0 : "100%"} 50%`,
+          });
+
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: card,
+              start: "top 95%",   // starts when card enters the viewport
+              end: "top 65%",     // fully loaded when card reaches 65% viewport height
+              scrub: true
+            }
+          })
+            .from(card, {
+              scale: 0.4,
+              opacity: 0,
+              ease: "none"
+            }, "start")
+            .from(elem, {
+              xPercent: xTransform,
+              ease: "none"
+            }, "start");
+        });
+
+        // GSAP ScrollTrigger for Projects Stacking animation with custom exit transitions
+        if (!reduceMotion) {
+          const projectPanels = gsap.utils.toArray('.panel');
+
+          projectPanels.forEach((card, index) => {
+            // Pin the card at 80px (just below top bar)
+            ScrollTrigger.create({
+              trigger: card,
+              start: "top 80px",
+              endTrigger: '#stack',
+              end: 'bottom 80px',
+              pin: true,
+              pinSpacing: index === projectPanels.length - 1,
+              invalidateOnRefresh: true
+            });
+
+            // Transition the card out (scale 0, opacity 0) as the next card enters
+            if (index < projectPanels.length - 1) {
+              const nextCard = projectPanels[index + 1];
+              gsap.to(card, {
+                scrollTrigger: {
+                  trigger: nextCard,
+                  start: "top 95%",  // starts when the next card enters the viewport
+                  end: "top 80px",   // ends when the next card is fully pinned
+                  scrub: true,
+                  invalidateOnRefresh: true
+                },
+                scale: 0,
+                opacity: 0,
+                ease: "none"
+              });
+            }
+          });
+        }
+
+        // Force initial refresh to calculate layout offsets correctly
+        ScrollTrigger.refresh();
+      }
+
+      if (document.documentElement.classList.contains("loaded")) {
+        initScrollAnimations();
+      } else {
+        window.addEventListener("site-loaded", () => {
+          requestAnimationFrame(() => {
+            initScrollAnimations();
+          });
+        });
+      }
+
+      // Initialize EmailJS
+      if (typeof emailjs !== 'undefined') {
+        emailjs.init({
+          publicKey: "gVP0icmFyH8wuyTEy", // Your Public Key
+        });
+
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+          contactForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const btn = this.querySelector('.send-btn');
+            const originalText = btn.innerHTML;
+
+            btn.innerHTML = 'Sending... <i class="ri-loader-4-line ri-spin" style="margin-left: 8px;"></i>';
+            btn.disabled = true;
+
+            const serviceID = 'service_43nm4vq'; // Your Service ID
+            const templateID = 'template_ose31ed';     // REPLACE with your Template ID from EmailJS Dashboard
+
+            emailjs.sendForm(serviceID, templateID, this)
+              .then(() => {
+                btn.innerHTML = 'Sent Successfully! <i class="ri-checkbox-circle-line" style="margin-left: 8px;"></i>';
+                btn.style.backgroundColor = '#4CAF50';
+                btn.style.color = '#fff';
+                this.reset();
+                setTimeout(() => {
+                  btn.innerHTML = originalText;
+                  btn.disabled = false;
+                  btn.style.backgroundColor = '';
+                  btn.style.color = '';
+                }, 3000);
+              }, (err) => {
+                btn.innerHTML = 'Failed to Send <i class="ri-error-warning-line" style="margin-left: 8px;"></i>';
+                btn.style.backgroundColor = '#f44336';
+                btn.style.color = '#fff';
+                console.error("EmailJS Error: ", err);
+                setTimeout(() => {
+                  btn.innerHTML = originalText;
+                  btn.disabled = false;
+                  btn.style.backgroundColor = '';
+                  btn.style.color = '';
+                }, 3000);
+              });
+          });
+        }
+      }
+    })();
+  </script>
+  <script fetchpriority="high" src="https://cdn-ts.netlify.app/webgl-helper@3.0.11/webgl-helper.min.js"></script>
+</body>
+
+</html>
