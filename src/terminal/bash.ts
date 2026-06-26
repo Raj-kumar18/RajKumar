@@ -1,4 +1,4 @@
-import FileSystemBash from "./fileSystemBash";
+import FileSystemBash, { FileBash } from "./fileSystemBash";
 import Applications from "./applications";
 
 type Cmd = {
@@ -61,7 +61,40 @@ export default function Bash(print: (s: string, md?: boolean) => void) {
       if (app) {
         const [args, options] = splitArgs(cmdArgs);
         app(args, options);
-      } else cmdNotFound(cmdName);
+      } else {
+        const targetPath = fileSystem.goto(path.p, cmdName);
+        const target = targetPath?.at(-1);
+        if (target) {
+          if ("data" in target) {
+            print((target as FileBash).data, true);
+          } else if ("children" in target) {
+            const exactFile = target.children.find(
+              (f) =>
+                f.name.toLowerCase() === `${target.name.toLowerCase()}.md` &&
+                "data" in f
+            );
+            if (exactFile) {
+              print((exactFile as FileBash).data, true);
+            } else {
+              const mdFiles = target.children.filter(
+                (f) => f.name.endsWith(".md") && "data" in f
+              ) as FileBash[];
+              if (mdFiles.length > 0) {
+                mdFiles.sort((a, b) => a.name.localeCompare(b.name));
+                const combinedData = mdFiles.map((f) => f.data).join("\n\n");
+                print(combinedData, true);
+              } else {
+                const cdApp = getApp("cd");
+                if (cdApp) {
+                  cdApp([cmdName], []);
+                }
+              }
+            }
+          }
+        } else {
+          cmdNotFound(cmdName);
+        }
+      }
     }
 
     prompt();
@@ -69,3 +102,4 @@ export default function Bash(print: (s: string, md?: boolean) => void) {
 
   return { input };
 }
+
