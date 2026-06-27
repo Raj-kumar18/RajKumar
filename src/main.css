@@ -1122,5 +1122,7 @@ a:hover {
 .top-notch-footer {
   position: relative;
   z-index: 10;
-  background-color: #0b0c0f;
+  top: 0;
+
+  background-color: #13151c;
 }
