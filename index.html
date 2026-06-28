@@ -48,20 +48,20 @@
       background-color: #0b0c0f !important;
     }
 
-    #loading {
-      position: fixed;
-      inset: 0;
-      background-color: #0b0c0f;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 999999;
-      overflow: hidden;
-      transform: translateY(0);
-      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-                  transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: transform, opacity;
-    }
+#loading {
+  position: fixed;
+  inset: 0;
+  background-color: #0b0c0f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  overflow: hidden;
+  transform: translateY(0);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);  /* EDITABLE: 0.4s → 0.9s, ya jo bhi feel sahi lage */
+  will-change: transform, opacity;
+}
 
     #loader-languages-text {
       font-family: "Montserrat", sans-serif;
