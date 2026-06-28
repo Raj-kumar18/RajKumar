@@ -1267,7 +1267,7 @@ a:hover {
 /* ---------- Featured Projects Interactive List ---------- */
 .featured-section {
   padding: 100px 0;
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin: 0 auto;
   padding-left: 4vw;
   padding-right: 4vw;
@@ -1310,6 +1310,7 @@ a:hover {
   display: flex;
   overflow: hidden;
   width: 100%;
+border-radius: 20px;
 }
 
 .featured-item-bg {
@@ -1353,6 +1354,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  align-items: baseline;
 }
 
 .featured-title {
