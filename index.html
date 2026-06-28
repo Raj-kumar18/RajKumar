@@ -1349,13 +1349,17 @@ const featuredItems = document.querySelectorAll(".featured-item");
             const title = item.querySelector(".featured-title");
             let isActive = false; // tracks whether the reveal box is currently shown for this item
 
-            const showReveal = () => {
+const showReveal = () => {
+              // 🔑 SNAP FIX: box ko turant cursor ke paas le aao,
+              // taaki lerp-lag ki wajah se image switch slow na lage
+              pos.x = mouse.x;
+              pos.y = mouse.y;
+              gsap.set(hoverReveal, { x: pos.x, y: pos.y });
+
               if (imageUrl) {
                 hoverRevealImg.src = imageUrl;
               }
-
               isActive = true;
-
               gsap.killTweensOf(hoverReveal);
               gsap.to(hoverReveal, {
                 opacity: 1,
@@ -1364,7 +1368,6 @@ const featuredItems = document.querySelectorAll(".featured-item");
                 duration: 0.35,
                 ease: "power3.out"
               });
-
               if (title) {
                 gsap.to(title, {
                   x: 15,
@@ -1373,7 +1376,6 @@ const featuredItems = document.querySelectorAll(".featured-item");
                 });
               }
             };
-
             const hideReveal = () => {
               isActive = false;
 
