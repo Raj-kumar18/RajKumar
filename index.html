@@ -1293,6 +1293,15 @@ const featuredItems = document.querySelectorAll(".featured-item");
         const hoverRevealImg = document.querySelector(".featured-hover-reveal__img");
 
         if (featuredItems.length && hoverReveal && hoverRevealImg) {
+          // Preload all images upfront so the first hover on each project isn't laggy
+          featuredItems.forEach((item) => {
+            const url = item.getAttribute("data-image");
+            if (url) {
+              const preloadImg = new Image();
+              preloadImg.src = url;
+            }
+          });
+
           let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
           let pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
 
@@ -1300,7 +1309,8 @@ const featuredItems = document.querySelectorAll(".featured-item");
             xPercent: -50,
             yPercent: -50,
             scale: 0.8,
-            rotation: -5
+            rotation: -5,
+            pointerEvents: "none" // 🔑 CORE FIX — box was blocking hover events on items underneath it
           });
 
           window.addEventListener("mousemove", (e) => {
@@ -1337,11 +1347,14 @@ const featuredItems = document.querySelectorAll(".featured-item");
           featuredItems.forEach(item => {
             const imageUrl = item.getAttribute("data-image");
             const title = item.querySelector(".featured-title");
+            let isActive = false; // tracks whether the reveal box is currently shown for this item
 
             const showReveal = () => {
               if (imageUrl) {
                 hoverRevealImg.src = imageUrl;
               }
+
+              isActive = true;
 
               gsap.killTweensOf(hoverReveal);
               gsap.to(hoverReveal, {
@@ -1362,6 +1375,8 @@ const featuredItems = document.querySelectorAll(".featured-item");
             };
 
             const hideReveal = () => {
+              isActive = false;
+
               gsap.killTweensOf(hoverReveal);
               gsap.to(hoverReveal, {
                 opacity: 0,
@@ -1384,6 +1399,8 @@ const featuredItems = document.querySelectorAll(".featured-item");
             item.addEventListener("mouseleave", hideReveal);
 
             item.addEventListener("mousemove", () => {
+              if (!isActive) return; // safety guard
+
               // Calculate horizontal distance from center of row to add active tilt
               const rect = item.getBoundingClientRect();
               const relativeX = mouse.x - rect.left;
