@@ -62,16 +62,33 @@ WebGL(() => {
   if (progressObserver !== undefined) {
     progressObserver.disconnect();
   }
+
   const loadingOverlay = document.getElementById("loading");
   if (loadingOverlay) {
     loadingOverlay.style.opacity = "0";
     loadingOverlay.style.transform = "translateY(-100%)";
-    setTimeout(() => {
-      loadingOverlay.style.display = "none";
-    }, 1200);
   }
-  document.documentElement.classList.add("loaded");
-  window.dispatchEvent(new Event("site-loaded"));
+
+  // 🔑 FIX: classList.add("loaded") + the "site-loaded" event used to fire
+  // IMMEDIATELY right here, in the same tick as the lines above. That event
+  // triggers initScrollAnimations() in index.html, which runs
+  // ScrollTrigger.refresh() and creates 48+ scroll triggers — a heavy,
+  // synchronous main-thread operation. That work was blocking the main
+  // thread WHILE the overlay was trying to fade/translate out, eating the
+  // transition's frame budget — so instead of a smooth slide, it looked
+  // like an instant snap to the final state.
+  //
+  // Fix: delay both classList.add("loaded") and the "site-loaded" dispatch
+  // until AFTER the overlay's exit transition has actually finished
+  // (matched to the same 1200ms timeout that hides the overlay). This way
+  // nothing heavy competes with the fade-out animation on the main thread.
+  setTimeout(() => {
+    if (loadingOverlay) {
+      loadingOverlay.style.display = "none";
+    }
+    document.documentElement.classList.add("loaded");
+    window.dispatchEvent(new Event("site-loaded"));
+  }, 1200); // EDITABLE: keep this >= your CSS transition duration for #loading
 });
 
 // Setup Lenis smooth scroll
