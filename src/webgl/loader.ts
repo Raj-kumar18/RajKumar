@@ -19,9 +19,9 @@ type Assists = {
 function loadAssists(callback: (assists: Assists) => any) {
   const assists: any = {};
 
-  const loadingDOM = document.querySelector("#loading");
-  const loadingItemsDOM = document.querySelector("#loading-items");
-  const loadingBarDOM = document.querySelector("#loading-bar-progress");
+  const loadingDOM = document.querySelector("#loading") as HTMLElement | null;
+  const loadingItemsDOM = document.querySelector("#loading-items") as HTMLElement | null;
+  const loadingBarDOM = document.querySelector("#loading-bar-progress") as HTMLElement | null;
 
   const manager = new THREE.LoadingManager();
 
@@ -38,17 +38,23 @@ function loadAssists(callback: (assists: Assists) => any) {
   };
 
   manager.onLoad = function () {
-    if (!loadingItemsDOM) return;
-    loadingItemsDOM.textContent = `Nearly There...`;
+    if (loadingItemsDOM) {
+      loadingItemsDOM.textContent = `Nearly There...`;
+    }
 
     console.log("Loading complete!");
     window.setTimeout(() => {
-      (loadingDOM as any).style.opacity = "0";
+      if (loadingDOM) {
+        loadingDOM.style.opacity = "0";
+        loadingDOM.style.transform = "translateY(-100%)";
+      }
       callback(assists as Assists);
     }, 200);
     window.setTimeout(() => {
-      (loadingDOM as any).style.display = "none";
-    }, 500);
+      if (loadingDOM) {
+        loadingDOM.style.display = "none";
+      }
+    }, 1200);
   };
 
   manager.onProgress = function (url, itemsLoaded, itemsTotal) {

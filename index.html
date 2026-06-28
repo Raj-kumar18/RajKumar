@@ -57,6 +57,10 @@
       align-items: center;
       z-index: 999999;
       overflow: hidden;
+      transform: translateY(0);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity;
     }
 
     #loader-languages-text {
@@ -1003,7 +1007,7 @@
                 class="ri-github-fill"></i> GitHub</a></li>
           <li><a href="https://www.linkedin.com/in/rajkumar/" target="_blank" class="footer-link"><i
                 class="ri-linkedin-box-fill"></i> LinkedIn</a></li>
-          <li><a href="mailto:raj.kumar.work18@gmail.com" class="footer-link"><i class="ri-mail-line"></i> Email Me</a>
+          <li><a href="mailto:drajkumar01234@gmail.com" class="footer-link"><i class="ri-mail-line"></i> Email Me</a>
           </li>
         </ul>
       </div>

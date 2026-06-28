@@ -65,9 +65,10 @@ WebGL(() => {
   const loadingOverlay = document.getElementById("loading");
   if (loadingOverlay) {
     loadingOverlay.style.opacity = "0";
+    loadingOverlay.style.transform = "translateY(-100%)";
     setTimeout(() => {
       loadingOverlay.style.display = "none";
-    }, 600);
+    }, 1200);
   }
   document.documentElement.classList.add("loaded");
   window.dispatchEvent(new Event("site-loaded"));

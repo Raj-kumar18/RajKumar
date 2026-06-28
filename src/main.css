@@ -98,7 +98,10 @@ body {
   align-items: center;
   z-index: 999999;
   overflow: hidden;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
 }
 
 #loader-languages-text {
